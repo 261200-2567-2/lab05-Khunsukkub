@@ -2,16 +2,21 @@
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.print("Hello and welcome!");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Charactor c1 = new Charactor("John" , new Warrior());
+        Charactor c2 = new Charactor("Jane" , new Mage());
+        Items i1 = new Items("Ogre king's ring", "King's god SMASH" , 10 , 15 , 5 , 20 , 5 , -5
+                            , new Requirement(2 , 3 , 5 , 0)
+                            );
+        Items i2 = new Items("Jacky's necklace" , "NONE" , 99 , 160 , 999 , 1200 , 5 , - 100
+                            , new Requirement(3 , 0 , 0 , 0)
+                            );
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        c2.status();
+        c1.levelUp();
+        c2.levelUp();
+        c1.equips(i1);
+        c1.gives(c2,i1);
+        c2.status();
     }
 }
