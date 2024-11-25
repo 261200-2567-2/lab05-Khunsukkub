@@ -1,0 +1,160 @@
+1. Classes Interface
+=======================
+Interface: Classes
+Purpose: กำหนดคุณสมบัติหลักที่คลาสตัวละครทุกตัวจะต้องมี เช่น ค่า HP, Mana, STR, CON, DEX เป็นต้น
+
+Methods:
+- String Class_name()
+- float Class_maxHP()
+- float Class_maxMana()
+- float Class_STR()
+- float Class_CON()
+- float Class_DEX()
+
+Classes Implementations:
+-------------------------
+Warrior
+- Implements: Classes
+- Variables:
+  - String name = "Warrior"
+- Methods:
+  - Class_name() - คืนค่าชื่อ "Warrior"
+  - Class_maxHP() - คืนค่า 140
+  - Class_maxMana() - คืนค่า 50
+  - Class_STR() - คืนค่า 6
+  - Class_CON() - คืนค่า 6
+  - Class_DEX() - คืนค่า 2
+
+Mage
+- Implements: Classes
+- Variables:
+  - String name = "Mage"
+- Methods:
+  - Class_name() - คืนค่าชื่อ "Mage"
+  - Class_maxHP() - คืนค่า 80
+  - Class_maxMana() - คืนค่า 100
+  - Class_STR() - คืนค่า 10
+  - Class_CON() - คืนค่า 4
+  - Class_DEX() - คืนค่า 5
+
+Rogue
+- Implements: Classes
+- Variables:
+  - String name = "Rogue"
+- Methods:
+  - Class_name() - คืนค่าชื่อ "Rogue"
+  - Class_maxHP() - คืนค่า 60
+  - Class_maxMana() - คืนค่า 70
+  - Class_STR() - คืนค่า 8
+  - Class_CON() - คืนค่า 2
+  - Class_DEX() - คืนค่า 9
+
+2. Stats Interface
+===========================
+Interface: Stats
+Purpose: กำหนดคุณสมบัติและการเข้าถึงข้อมูลของตัวละคร เช่น ชื่อ, เลเวล, HP, Mana, STR, CON, DEX
+
+Methods:
+- String getName()
+- int getLevel()
+- float getMAXHP()
+- float getMAXMana()
+- float getSTR()
+- float getCON()
+- float getDEX()
+
+Charactor (Class ที่ Implement Stats):
+-----------------------------------------
+- Implements: Stats
+- Variables:
+  - String name
+  - Classes classes
+  - int level
+  - int stat_point
+  - float maxHP, HP, maxMana, Mana, STR, CON, DEX
+  - float addmaxHP, addmaxMana, addSTR, addCON, addDEX
+- Methods:
+  - getName(), getLevel(), getMAXHP(), getMAXMana(), getSTR(), getCON(), getDEX()
+  - UpdatedStats()
+  - status()
+  - levelUp()
+  - UpStats(String stat)
+  - equips(Items item)
+  - unequips(Items item)
+
+3. EquipmentSlot Interface
+============================
+Interface: EquipmentSlot
+Purpose: จัดการกับช่องอุปกรณ์ที่ตัวละครสามารถสวมใส่
+
+Methods:
+- Items getSlot(String slotName)
+- void setSlot(String slotName, Items item)
+- void removeSlot(String slotName)
+- String findEmptySlot()
+- Iterable<String> getSlotName()
+
+Slot (Class ที่ Implement EquipmentSlot):
+-------------------------------------------
+- Implements: EquipmentSlot
+- Variables:
+  - HashMap<String, Items> slots
+- Methods:
+  - getSlot()
+  - setSlot()
+  - removeSlot()
+  - findEmptySlot()
+  - getSlotName()
+
+4. Item Interface
+==================
+Interface: Item
+Purpose: กำหนดคุณสมบัติของไอเท็ม เช่น ชื่อ, ข้อกำหนดในการสวมใส่
+
+Methods:
+- String getName()
+- Requirement getRequirement()
+- int getLevel()
+- float getMAXHP(), getMAXMana(), getSTR(), getCON(), getDEX()
+
+Items (Class ที่ Implement Item และ SpecialMove):
+------------------------------------------------
+- Implements: Item, SpecialMove
+- Variables:
+  - String name, SpecialMove
+  - Requirement requirement
+  - int level
+  - float maxHP, maxMana, STR, CON, DEX
+- Methods:
+  - getName(), getSpecialMove(), getRequirement(), getLevel(), getMAXHP(), getMAXMana(), getSTR(), getCON(), getDEX()
+  - CheckSpecialMove()
+  - stats()
+
+5. SpecialMove Interface
+===========================
+Interface: SpecialMove
+Purpose: กำหนดการใช้งานท่าพิเศษของไอเท็ม
+
+Methods:
+- String getSpecialMove()
+- String CheckSpecialMove()
+
+/////////////////////////////////////////////////////////////////////
+//
+// สิ่งที่ Updated เข้ามาคือความชัดเจนของการทำงานของ method ต่างๆ (อธิบาย ใน coding)
+// และ interact ของตัวละคร มี
+//
+/////////////////////////////////////////////////////////////////////
+
+
+1 . drains
+===========================
+Purpose : ดูดพลังทั้งหมดของฝ่ายตรงข้ามแล้ว reset ทุกอย่างของ ฝ่ายตรงข้าม
+
+2 . hits
+===========================
+Purpose : โจมตีฝ่ายตรงข้ามโดยขึ้นอยู่กับ STR ของตัวละครที่โจมตีและ CON ของอีกฝ่าย
+
+3 . gives
+===========================
+Purpose : มอบไอเทมให้แก่ตัวละครอีกฝ่าย โดย คำนึงถึงค่าสถานะของตัวละครอีกฝ่าย
